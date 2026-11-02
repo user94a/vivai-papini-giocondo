@@ -9,3 +9,52 @@
 .catalog-filter{display:grid;gap:10px;min-width:0;position:relative;anchor-name:--catalog-filter}.catalog-filter-trigger,.catalog-filter-menu button{display:flex;align-items:center;gap:16px;width:100%;border:0;border-radius:0;padding:8px 16px;background:#f4f4ee;color:#193b2b;font:inherit;text-align:left;cursor:pointer;min-height:64px}.catalog-filter-trigger img,.catalog-filter-menu img{width:48px;height:48px;object-fit:contain;flex-shrink:0;background:#f7f1e1}.catalog-filter-trigger svg{width:20px;height:20px;margin-left:auto;flex-shrink:0;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.catalog-filter-menu{position:fixed;position-anchor:--catalog-filter;inset:auto;top:anchor(bottom);left:anchor(left);width:anchor-size(width);max-width:calc(100vw - 40px);max-height:min(480px,60dvh);overflow:auto;margin:8px 0 0;padding:8px;border:0;background:#e5e9df;color:#193b2b;box-shadow:0 12px 32px #10241c26}.catalog-filter-menu button{background:transparent}.catalog-filter-menu button:hover,.catalog-filter-menu button:focus-visible{background:#f4f4ee}.catalog-filter-menu button[aria-pressed=true]{background:#d5dfcf}.catalog-filter-check{margin-left:auto}.catalog-filter-menu :focus-visible{outline:3px solid #517345;outline-offset:-3px}@supports not (top:anchor(bottom)){.catalog-filter-menu{top:50%;left:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 40px));margin:0}}@media(max-width:760px){.catalog-filter-trigger,.catalog-filter-menu button{gap:12px;padding:8px 12px}.catalog-filter-trigger img,.catalog-filter-menu img{width:40px;height:40px}}
 
 @media(min-width:1440px){.botanical-catalog{padding-inline:calc((100% - 1440px)/2 + 57.6px)}}
+
+/* Catalog surfaces use the same corner system as the homepage. */
+.catalog-tools,.product-art,.product-format,.product-contact,.catalog-filter-menu {
+  border-radius:var(--radius-surface);
+  corner-shape:var(--shape-corner);
+}
+.product-art{overflow:hidden}
+.catalog-tools select,.catalog-filter-trigger,.catalog-filter-menu button,
+.catalog-filter-trigger img,.catalog-filter-menu img {
+  border-radius:var(--radius-control);
+  corner-shape:var(--shape-corner);
+}
+
+/* The standalone catalog and dialog use the same spacing scale. */
+.botanical-catalog{padding-inline:max(clamp(24px,5vw,80px),calc((100% - 1440px)/2));padding-bottom:64px}
+.catalog-intro{padding:80px 0 96px;gap:48px}
+.catalog-tools{padding:var(--space-panel);gap:32px}
+.catalog-filter{gap:16px}
+.catalog-filter-trigger,.catalog-filter-menu button{padding:16px 20px;gap:20px;min-height:76px}
+.catalog-filter-menu{padding:12px}
+.catalog-listino{padding-top:72px}
+.listino-category{margin-bottom:96px}
+.listino-category-heading{gap:40px;margin-bottom:48px}
+.listino-family{margin-bottom:88px}
+.listino-product{padding:40px 0 56px}
+.listino-identity{margin-bottom:36px;gap:32px}
+.product-table th{padding-block:18px}
+.product-table td{padding-block:22px}
+.product-main{padding:64px 0 112px}
+.product-format{padding:var(--space-panel);margin-bottom:24px}
+.product-format dl{gap:24px}
+.product-contact{padding:28px 32px;gap:24px}
+.catalog-footer{padding-top:56px}
+@media(max-width:760px){
+  .catalog-intro{padding:48px 0 64px}
+  .catalog-tools{padding:24px;gap:24px}
+  .catalog-filter-trigger,.catalog-filter-menu button{padding:14px 16px;gap:14px}
+  .catalog-listino{padding-top:48px}
+  .listino-category{margin-bottom:64px}
+  .listino-category-heading{gap:24px;margin-bottom:36px}
+  .listino-category-art{width:88px}
+  .listino-category-heading h2{font-size:32px;overflow-wrap:anywhere}
+  .listino-family{margin-bottom:56px}
+  .listino-product{padding:32px 0 40px}
+  .listino-identity{gap:20px;margin-bottom:28px}
+  .product-main{padding:40px 0 72px;gap:48px}
+  .product-format{padding:28px}
+  .product-contact{padding:24px;gap:16px}
+}

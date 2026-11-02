@@ -11,7 +11,14 @@
   --field-1: #1a3326;
   --field-1-ink: #d8ddd2;
   --page-margin: clamp(1.25rem, 3vw, 2rem);
+  --space-section: clamp(88px, 10vw, 160px);
+  --space-panel: clamp(28px, 4.5vw, 72px);
+  --space-gap: clamp(20px, 2.25vw, 36px);
+  --space-heading: clamp(36px, 4.5vw, 64px);
   --radius: 0px;
+  --radius-surface: 20px;
+  --radius-control: 8px;
+  --shape-corner: round;
   --step-small: clamp(0.875rem, 0.84rem + 0.15vw, 0.9375rem);
   --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
   --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
@@ -1040,5 +1047,14 @@ p {
   .footer-credits,
   .footer-meta > p:last-child {
     text-align: left;
+  }
+}
+
+/* Shared continuous corners, with ordinary rounded corners as the fallback. */
+@supports (corner-shape: squircle) {
+  :root {
+    --radius-surface: 36px;
+    --radius-control: 12px;
+    --shape-corner: squircle;
   }
 }
