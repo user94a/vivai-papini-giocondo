@@ -14,7 +14,7 @@ export const FAMILIES = [
 export function familyFor(product: Product) { return FAMILIES.find(f => f.id === product.family)!; }
 
 export const CATALOG_GROUPS = [
-  { id: 'olivi', name: 'Olivi', description: 'Foglie argentee, chiome leggere e il carattere del paesaggio mediterraneo. Gli olivi portano struttura e continuità negli spazi verdi, dal giardino di casa ai progetti paesaggistici. Esplora le varietà e confronta i formati di coltivazione.' },
+  { id: 'olivi', name: 'Olivi', description: 'La nostra produzione di olivi è dedicata soprattutto agli impianti per la produzione di olio e olive da mensa. Esplora le varietà a catalogo e confronta i formati di coltivazione per il tuo impianto.' },
   { id: 'mimose', name: 'Mimose', description: 'La luce del giallo tra foglie sottili e leggere. Le mimose annunciano il cambio di stagione con fioriture generose e un portamento arioso: una presenza luminosa per dare colore e movimento al giardino. Scopri le varietà e i formati a catalogo.' },
   { id: 'rose', name: 'Rose', description: 'Fiori, portamenti e colori per immaginare il giardino in modi diversi. Dalle rose a grandi fiori alle rampicanti, fino alle paesaggistiche, ogni gruppo offre un modo di disegnare aiuole, bordure e spazi verticali. Scegli il gruppo e confronta le varietà.' },
   { id: 'glicini', name: 'Glicini', description: 'Grappoli pendenti e rami che accompagnano pergole, archi e sostegni. I glicini danno al giardino una dimensione verticale e una fioritura scenografica, creando nel tempo angoli raccolti e ombreggiati. Consulta le selezioni e i formati di coltivazione.' },
