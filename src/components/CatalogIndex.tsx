@@ -3,7 +3,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import Image from 'next/image';
 import { sitePath } from '@/lib/site-path';
-import { CATALOG_GROUPS, FAMILIES, PRODUCTS, ROSE_DESCRIPTIONS, roseSummary, mimosaSummary } from '@/lib/catalog';
+import { CATALOG_GROUPS, FAMILIES, PRODUCTS, ROSE_DESCRIPTIONS, ROSE_BREEDERS, roseSummary, mimosaSummary } from '@/lib/catalog';
 import { ProductTable } from './ProductTable';
 import { CatalogArtwork } from './CatalogArtwork';
 
@@ -152,7 +152,7 @@ export function CatalogIndex({ initialFamily = '', familyOverview = false }: { i
           <ProductTable product={mimosaSummary(category.products)} />
         </article>
       </div> : FAMILIES.filter(item => category.products.some(product => product.family === item.id)).map(item => <div className="listino-family" key={item.id}>
-        {category.id === 'rose' && <><h3 id={item.id}>{item.name}</h3>{familyOverview && <p className="rose-family-description">{ROSE_DESCRIPTIONS[item.id]}</p>}</>}
+        {category.id === 'rose' && <><h3 id={item.id}>{item.name}</h3>{familyOverview && <p className="rose-family-description">{ROSE_DESCRIPTIONS[item.id]}</p>}{ROSE_BREEDERS[item.id] && <p className="rose-family-description">Abbiamo tutti i principali ibridatori: {ROSE_BREEDERS[item.id].join(', ')}.</p>}</>}
         {(category.id === 'rose' ? roseSummary(category.products.filter(product => product.family === item.id)) : category.products.filter(product => product.family === item.id)).map(product => <article className="listino-product" key={product.slug}>
           <div className="listino-identity">{category.id === 'rose' ? <h4>{product.name}</h4> : <h3>{product.name}</h3>}</div>
           <ProductTable product={product} />

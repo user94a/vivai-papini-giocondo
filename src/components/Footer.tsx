@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowOut } from "@/components/ArrowOut";
 import { Envelope, Phone } from "@phosphor-icons/react/ssr";
-import { BrandLogo } from "@/components/BrandLogo";
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
@@ -14,8 +13,8 @@ export function Footer() {
   return (
     <>
       <footer className="site-footer sober-footer" id="footer">
+        <p className="footer-brand-name">Vivai Papini Giocondo</p>
         <div className="footer-identity">
-          <BrandLogo size="lg" negative className="footer-logo" />
           <div className="footer-notes">
             <p>s.s. agri. Papini Giocondo</p>
             <p>{COMPANY_PARTNERS}</p>
@@ -27,7 +26,6 @@ export function Footer() {
           <nav className="footer-navigation" aria-label="Esplora il sito">
             <Link href="/catalogo">Catalogo <ArrowOut /></Link>
             <Link href="/contatti">Contatti <ArrowOut /></Link>
-            <Link href="/about">About <ArrowOut /></Link>
           </nav>
           <div className="footer-direct-contacts">
           <a className="footer-email-link" href={`mailto:${CONTACT_EMAIL}`}>

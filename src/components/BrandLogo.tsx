@@ -7,7 +7,6 @@ type BrandLogoProps = {
   size?: "sm" | "md" | "lg";
   className?: string;
   priority?: boolean;
-  negative?: boolean;
 };
 
 const SIZES = {
@@ -20,16 +19,16 @@ export function BrandLogo({
   size = "md",
   className = "",
   priority = false,
-  negative = false,
 }: BrandLogoProps) {
   const { width, height } = SIZES[size];
 
   return (
     <Image
-      src={sitePath(`/logo-vivai-papini-giocondo${negative ? "-negativo" : ""}.svg`)}
+      src={sitePath("/logo-papini-tondo-ritagliato.png")}
+      unoptimized
       alt={LOGO_ALT}
       width={width}
-      height={height}
+      height={Math.round(height * 2628 / 2635)}
       className={`brand-logo brand-logo-${size} ${className}`.trim()}
       preload={priority}
     />

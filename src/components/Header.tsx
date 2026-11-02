@@ -9,7 +9,6 @@ import { FlowerContact } from "@/components/FlowerContact";
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/catalogo", label: "Catalogo" },
-  { href: "/about", label: "About" },
 ];
 
 export function Header() {
@@ -19,6 +18,7 @@ export function Header() {
     <header className="new-header">
       <Link href="/" className="new-brand" aria-label="Vivai Papini Giocondo, homepage" onClick={() => setOpen(false)}>
         <BrandLogo size="sm" priority />
+        <span className="brand-name" aria-hidden="true">Vivai<br />Papini<br />Giocondo</span>
       </Link>
       <nav id="main-navigation" aria-label="Principale" className={open ? "new-nav open" : "new-nav"}>
         {LINKS.map(({ href, label }) => (

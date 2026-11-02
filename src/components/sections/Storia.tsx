@@ -8,7 +8,7 @@ export function Storia() {
       <h2 className="about-heading">Dal 1920</h2>
       <article className="letter-sheet">
         <Image
-          src={sitePath("/logo-vivai-papini-giocondo.svg")}
+          src={sitePath("/logo-papini-tondo-ritagliato.png")}
           alt=""
           width={44}
           height={44}

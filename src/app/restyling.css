@@ -8,9 +8,13 @@
 @media(max-width:600px){.new-header{padding:16px 5%;position:relative}.new-brand{font-size:13px}.new-brand img{width:28px}.menu-button{display:block;border:0;background:#193b2b;color:white;padding:12px 18px;border-radius:99px;font-size:13px}.new-nav{display:none}.new-nav.open{display:flex;position:absolute;top:85px;left:0;right:0;z-index:20;background:#f3f4ed;padding:24px 5%;flex-direction:column;font-size:17px}.new-hero{padding:30px 5% 0}.hero-heading{display:block;margin-bottom:40px}.hero-heading h1{font-size:21vw}.hero-description{width:100%;margin-top:27px;padding-bottom:20px;display:flex;gap:20px;align-items:end;justify-content:space-between}.hero-description p{font-size:14px}.hero-description .text-action{font-size:12px;max-width:120px;gap:10px}.hero-landscape{height:390px}.hero-landscape,.hero-landscape>img{border-radius:var(--radius-surface);corner-shape:var(--shape-corner)}.floating-note{width:min(260px,calc(100% - 36px));right:18px;top:-18px;padding:18px;font-size:16px}.note-leaf{font-size:27px}.landscape-caption{left:22px;right:22px;bottom:22px;font-size:23px}.circle-arrow{width:44px;height:44px}.hero-bottom{font-size:10px;gap:15px}.hero-bottom>span:nth-child(2){display:none}.plants-section,.care-section{padding:75px 5%}.section-heading{display:block;margin-bottom:28px}.section-heading h2,.roots-copy h2{font-size:45px}.section-heading>p{width:100%;margin-top:22px;font-size:15px}.plant-filters{gap:7px}.plant-filters button{padding:10px 17px;font-size:12px;gap:10px}.plant-cards{grid-template-columns:1fr}.plant-card{padding:24px}.plant-picture{height:300px}.plant-card-top span:last-child{display:block}.plant-title h3{font-size:46px}.plant-card>p{max-width:none}.other-plants{font-size:13px}.other-plants>div{gap:14px}.roots-section{padding:45px 5%;grid-template-columns:1fr;gap:35px}.roots-copy>p{font-size:16px}.roots-image{height:390px}.care-grid{grid-template-columns:1fr}.care-main{min-height:370px}.care-small{min-height:310px;gap:25px}.care-small .text-action{font-size:14px}.new-site .contact-section{padding:0 5% 65px}.new-site .coupon{grid-template-columns:1fr}.new-site .coupon-left{padding:30px 25px;gap:20px}.new-site .coupon-left h2{font-size:45px}.new-site .coupon-left p{font-size:16px}.new-site .coupon-right{padding:0 25px 30px}.new-site .site-footer{padding:35px 5%}.new-site .footer-contact-line{font-size:9vw}.new-site .footer-notes{font-size:13px}.new-site .footer-top-link{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.new-site *{animation:none!important;transition:none!important;scroll-behavior:auto!important}.care-main video{display:none}.care-main{background:url('../../public/images/optimized/mimose-foto.webp') center/cover}.care-main>div{background:#193b2b;padding:15px;border-radius:var(--radius-control);corner-shape:var(--shape-corner)}}
 
-/* Original square brand artwork, displayed without duplicate lettering. */
-.new-brand .brand-logo{width:112px;height:auto;aspect-ratio:1;object-fit:contain}.new-brand:hover{opacity:1}
-@media(max-width:600px){.new-brand .brand-logo{width:88px}.new-nav.open{top:120px}}
+/* Preserve the supplied artwork's original proportions in the header. */
+.new-header{position:relative}
+.new-header::after{content:"";position:absolute;bottom:0;left:var(--site-gutter);right:var(--site-gutter);height:1px;max-width:1440px;margin-inline:auto;background:color-mix(in srgb,var(--ink) 20%,transparent);pointer-events:none}
+.new-brand{flex-shrink:0}
+.brand-name{font-size:26px;font-weight:600;line-height:1.05;letter-spacing:-.035em}
+.new-brand .brand-logo{display:block;width:104px;max-width:none;height:auto;aspect-ratio:2635/2628;object-fit:contain;flex-shrink:0}.new-brand:hover{opacity:1}
+@media(max-width:600px){.new-brand .brand-logo{width:74px}.new-nav.open{top:152px}}
 
 .new-site .footer-phone{display:flex;gap:28px;flex-wrap:wrap}.new-site .footer-contact-line{font-size:clamp(24px,5.2vw,78px);overflow-wrap:anywhere}.contact-direct{font-style:normal;font-size:15px;line-height:1.6;display:grid;gap:12px}.contact-direct>div{display:flex;flex-wrap:wrap;gap:20px}.contact-direct a:hover{text-decoration:underline;text-underline-offset:4px}.new-site .footer-notes p:first-child{font-weight:650}
 
@@ -130,9 +134,18 @@
 
 .new-site .footer-meta,.new-site .footer-credits{font-size:13px}
 
+@media(max-width:600px){
+  .new-header{gap:12px}
+  .new-brand{gap:8px}
+  .new-brand .brand-logo{width:74px}
+  .brand-name{font-size:18px}
+  .new-nav.open{top:100%}
+}
+
 /* Layout for the shared footer's current markup. */
 .new-site .sober-footer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:64px;margin-bottom:24px;align-items:start}
 .footer-identity{display:grid;justify-items:start;align-content:start;gap:36px;min-width:0}
+.footer-brand-name{grid-column:1/-1;margin:0;font-size:clamp(36px,7.4vw,120px);font-weight:600;line-height:1;letter-spacing:-.055em}
 .footer-logo{display:block;width:160px;height:auto}
 .sober-footer .footer-notes{font-size:14px;line-height:1.6;gap:8px}
 .new-site .footer-notes p:first-child{font-weight:400}

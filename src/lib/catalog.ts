@@ -27,21 +27,23 @@ export const ROSE_DESCRIPTIONS: Record<string, string> = {
   'rose-paesaggistiche': 'Fioriture che si leggono nell’insieme del giardino. Le rose paesaggistiche si prestano a bordure, gruppi e aiuole, con portamenti da scegliere in funzione dello spazio disponibile.',
 };
 
-// Keep the source varieties intact, but present roses by breeder and growing format.
+export const ROSE_BREEDERS: Record<string, string[]> = {
+  'rose-grandi-fiori': ['Meilland', 'Poulsen', 'David Austin', 'Tantau', 'Avramis', 'Nirp'],
+};
+
+// Present one set of growing formats per rose family, without repeating breeders.
 export function roseSummary(products: Product[]): Product[] {
   const groups = new Map<string, Product>();
   for (const product of products) {
+    if (!groups.has(product.family)) groups.set(product.family, {
+      slug: `${product.family}-formati`,
+      name: 'Formati di coltivazione',
+      family: product.family,
+      variants: [],
+    });
+    const group = groups.get(product.family)!;
     for (const variant of product.variants) {
-      const breeder = variant.attributes.Ibridatore;
-      const key = `${product.family}:${breeder ?? ''}`;
-      if (!groups.has(key)) groups.set(key, {
-        slug: key,
-        name: breeder ?? 'Formati di coltivazione',
-        family: product.family,
-        variants: [],
-      });
       const attributes = Object.fromEntries(Object.entries(variant.attributes).filter(([name]) => !['Colore', 'Ibridatore', 'Serie'].includes(name)));
-      const group = groups.get(key)!;
       if (!group.variants.some(item => JSON.stringify(item.attributes) === JSON.stringify(attributes))) {
         group.variants.push({ ...variant, attributes });
       }
@@ -63,9 +65,13 @@ export function mimosaSummary(products: Product[]): Product {
     slug: 'mimose-formati',
     name: 'Mimose',
     family: 'mimose',
-    variants: [...formats].sort(([a], [b]) => a.localeCompare(b, 'it', { numeric: true })).map(([container, heights]) => ({
+    variants: [...formats].sort(([a], [b]) => {
+      const order = [12, 16, 28, 20];
+      const size = (container: string) => Number(container.match(/\d+/)?.[0]);
+      return order.indexOf(size(a)) - order.indexOf(size(b));
+    }).map(([container, heights]) => ({
       attributes: {
-        Contenitore: container,
+        Contenitore: /\b28\b/.test(container) ? 'ct 28 (15 lt)' : container,
         Altezza: [...heights].sort((a, b) => a.localeCompare(b, 'it', { numeric: true })).join(', '),
       },
       source: '',
