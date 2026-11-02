@@ -43,7 +43,7 @@ export function Catalog() {
       return <button type="button" key={category.id} className={`production-card production-${category.id}`} onClick={event => open(category.id, event.currentTarget)} aria-haspopup="dialog">
         <span className="production-art"><CatalogArtwork product={products[0]} /></span>
         <span className="production-name">{category.name}</span>
-        <span className="production-foot"><span>{products.length} varietà</span><span aria-hidden="true"><ArrowOut /></span></span>
+        <span className="production-foot"><span>{category.id === 'rose' ? 'Ibridatori e formati' : `${products.length} varietà`}</span><span aria-hidden="true"><ArrowOut /></span></span>
       </button>;
     })}</div>
     <button type="button" className="catalog-home-link" onClick={event => open('', event.currentTarget)} aria-haspopup="dialog">Tutto il catalogo <span aria-hidden="true"><ArrowOut /></span></button>

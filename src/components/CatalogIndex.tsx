@@ -3,7 +3,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import Image from 'next/image';
 import { sitePath } from '@/lib/site-path';
-import { CATALOG_GROUPS, FAMILIES, PRODUCTS, ROSE_DESCRIPTIONS } from '@/lib/catalog';
+import { CATALOG_GROUPS, FAMILIES, PRODUCTS, ROSE_DESCRIPTIONS, roseSummary, mimosaSummary } from '@/lib/catalog';
 import { ProductTable } from './ProductTable';
 import { CatalogArtwork } from './CatalogArtwork';
 
@@ -107,7 +107,7 @@ export function CatalogIndex({ initialFamily = '', familyOverview = false }: { i
       }}>
         <span className="catalog-family-name">{group.name}</span>
         <span className="catalog-family-description">{group.description}</span>
-        <span className="catalog-family-meta"><span>{products.length} varietà</span><span className="catalog-family-action">Esplora</span></span>
+        <span className="catalog-family-meta"><span>{group.id === 'rose' ? 'Ibridatori e formati' : `${products.length} varietà`}</span><span className="catalog-family-action">Esplora</span></span>
       </button>;
     })}
     <motion.div className="catalog-cursor-preview" aria-hidden="true" style={{ x: smoothX, y: smoothY }}>
@@ -137,16 +137,23 @@ export function CatalogIndex({ initialFamily = '', familyOverview = false }: { i
           </button>)}
         </div>
       </div>
-      <p role="status">{shown.length} {shown.length === 1 ? 'pianta' : 'piante'}</p>
+      <p role="status">{family === 'rose' || family.startsWith('rose-') ? 'Ibridatori e formati' : `${shown.filter(product => !product.family.startsWith('rose-')).length} varietà${!family ? ' e rose per ibridatore' : ''}`}</p>
     </div>
     <div className="catalog-listino">{categories.map(category => <section className="listino-category" key={category.id} id={category.id}>
       <header className="listino-category-heading">
         {!familyOverview && <div className="listino-category-art"><CatalogArtwork product={category.products[0]} /></div>}
         {familyOverview ? <div><h2 ref={detailHeading} tabIndex={-1}>{category.name}</h2><p className="catalog-family-description">{activeGroup?.description}</p></div> : <h2>{category.name}</h2>}
       </header>
-      {FAMILIES.filter(item => category.products.some(product => product.family === item.id)).map(item => <div className="listino-family" key={item.id}>
+      {category.id === 'mimose' ? <div className="listino-family">
+        <article className="listino-product">
+          <div className="listino-identity"><h3>Acacia dealbata</h3></div>
+          <p className="rose-family-description">{category.products.map(product => product.name.replace('Acacia dealbata ', '')).join(', ')}.</p>
+          <h3>Formati di coltivazione</h3>
+          <ProductTable product={mimosaSummary(category.products)} />
+        </article>
+      </div> : FAMILIES.filter(item => category.products.some(product => product.family === item.id)).map(item => <div className="listino-family" key={item.id}>
         {category.id === 'rose' && <><h3 id={item.id}>{item.name}</h3>{familyOverview && <p className="rose-family-description">{ROSE_DESCRIPTIONS[item.id]}</p>}</>}
-        {category.products.filter(product => product.family === item.id).map(product => <article className="listino-product" key={product.slug}>
+        {(category.id === 'rose' ? roseSummary(category.products.filter(product => product.family === item.id)) : category.products.filter(product => product.family === item.id)).map(product => <article className="listino-product" key={product.slug}>
           <div className="listino-identity">{category.id === 'rose' ? <h4>{product.name}</h4> : <h3>{product.name}</h3>}</div>
           <ProductTable product={product} />
         </article>)}
