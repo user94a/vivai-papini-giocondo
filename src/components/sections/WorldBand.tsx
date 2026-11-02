@@ -6,26 +6,9 @@ export function WorldBand() {
     <section className="world-band" id="mondo">
       <h2 className="world-heading">Il paesaggio intorno</h2>
       <div className="world-frame">
-        <video
-          className="world-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={sitePath("/assets/maestral-i-masline-130321-poster.jpg")}
-          width={848}
-          height={480}
-          aria-hidden="true"
-        >
-          <source
-            src={sitePath("/assets/maestral-i-masline-130321.webm")}
-            type="video/webm"
-          />
-        </video>
         <Image
-          src={sitePath("/assets/lun-olive-gardens-2.jpg")}
-          alt="Oliveto mediterraneo storico, giardini di Lun"
+          src={sitePath("/images/optimized/olivi-foto.webp")}
+          alt="Filari di olivi coltivati in vaso nel vivaio"
           width={1920}
           height={1280}
           className="world-photo"
@@ -33,8 +16,7 @@ export function WorldBand() {
         />
       </div>
       <p className="world-caption">
-        Vento sugli olivi e paesaggio mediterraneo: il mondo intorno al nostro
-        mestiere, non le nostre piante in campo.
+        Olivi, filari e cura quotidiana: il nostro mestiere, pianta per pianta.
       </p>
     </section>
   );
