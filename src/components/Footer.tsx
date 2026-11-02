@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FooterEasterEgg } from "@/components/FooterEasterEgg";
 import { ArrowOut } from "@/components/ArrowOut";
 import { Envelope, Phone } from "@phosphor-icons/react/ssr";
 import {
@@ -43,6 +44,7 @@ export function Footer() {
           </div>
           <p className="footer-membership">Soci ANVE<span>Associazione Nazionale Vivaisti Esportatori</span></p>
         </div>
+        <FooterEasterEgg />
       </footer>
       <div className="footer-legal">
         <p>© {new Date().getFullYear()} Vivai Papini Giocondo. Tutti i diritti riservati.</p>

@@ -1,0 +1,28 @@
+.ant-hideout {
+  position: fixed;
+  transform-origin: 0 0;
+  width: 100px;
+  height: 25px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 8;
+  color: #171915;
+}
+
+.ant-walk { position: relative; width: 18px; height: 12px; pointer-events: auto; cursor: pointer; }
+.ant-walk::before { content: ""; position: absolute; inset: -5px; }
+.ant-walk:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+.ant-drawing { display: block; width: 18px; height: 12px; }
+.ant-legs-a, .ant-legs-b { transform-origin: 13px 8px; animation: ant-step 180ms linear infinite alternate; }
+.ant-legs-b { animation-direction: alternate-reverse; }
+.ant-is-fleeing .ant-legs-a, .ant-is-fleeing .ant-legs-b { animation-duration: 60ms; }
+
+@keyframes ant-step {
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(10deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ant-hideout { display: none; }
+  .ant-legs-a, .ant-legs-b { animation: none; }
+}

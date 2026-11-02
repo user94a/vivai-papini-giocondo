@@ -142,7 +142,7 @@ export function CatalogIndex({ initialFamily = '', familyOverview = false }: { i
     <div className="catalog-listino">{categories.map(category => <section className="listino-category" key={category.id} id={category.id}>
       <header className="listino-category-heading">
         {!familyOverview && <div className="listino-category-art"><CatalogArtwork product={category.products[0]} /></div>}
-        {familyOverview ? <div><h2 ref={detailHeading} tabIndex={-1}>{category.name}</h2><p className="catalog-family-description">{activeGroup?.description}</p></div> : <h2>{category.name}</h2>}
+        {familyOverview ? <div><h2 ref={detailHeading} tabIndex={-1}>{category.name}</h2><p className="catalog-family-description">{activeGroup?.description}</p></div> : <div><h2>{category.name}</h2><p className="catalog-family-description">{CATALOG_GROUPS.find(group => group.id === category.id)?.description}</p></div>}
       </header>
       {category.id === 'mimose' ? <div className="listino-family">
         <article className="listino-product">

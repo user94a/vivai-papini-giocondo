@@ -198,8 +198,6 @@
 @media(max-width:1100px){.gesture-delivery{grid-column:1/-1}}
 @media(max-width:600px){.gesture-card{min-height:380px}.gesture-front,.gesture-back{padding:32px 32px 96px}.care-grid .gesture-back h3{font-size:28px}.care-grid .gesture-back p{font-size:16px}.gesture-delivery{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){.gesture-turn,.gesture-card.is-open .gesture-turn{transform:none}.gesture-back{transform:none}.gesture-card:not(.is-open) .gesture-back,.gesture-card.is-open .gesture-front{visibility:hidden}}
-.is-open .gesture-toggle{inset:auto 24px 24px auto;width:44px;height:44px;border-radius:50%}
-.is-open .gesture-toggle-icon{right:0;bottom:0}
 
 /* The active card makes room before its reverse is revealed. */
 .gesture-grid{display:flex;align-items:stretch}
@@ -221,7 +219,10 @@
 
 /* Shared navigation and dedicated information pages. */
 .new-nav .mobile-contact{display:none}
-.new-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px}
+.new-nav a{padding:12px 20px;border-radius:var(--radius-control);corner-shape:var(--shape-corner);text-decoration:none;transition:background-color .2s,color .2s}
+.new-nav a:hover{background:var(--surface);opacity:1}
+.new-nav a[aria-current="page"]{background:var(--surface);color:var(--ink)}
+.new-nav a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
 .dedicated-intro{padding:56px var(--site-gutter) 72px}
 .dedicated-intro h1{font-size:clamp(48px,7vw,100px);letter-spacing:-.05em;line-height:1.05;margin:0 0 24px}
 .dedicated-intro p{font-size:clamp(16px,2vw,22px);max-width:46ch}
