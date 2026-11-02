@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { PLANTS } from "@/lib/content";
-import { usePlant } from "@/components/PlantContext";
 import "./catalog.css";
 
 type Plant = (typeof PLANTS)[number];
@@ -12,19 +11,16 @@ const DETAILS = {
     intro: "Più dimensioni, da 2 a 8/10 anni.",
     description: "Produciamo olivi di più dimensioni: dalle piante di 2 anni fino agli esemplari di 8/10 anni. Confrontiamoci sulle esigenze del tuo progetto per individuare le dimensioni e le quantità adatte.",
     specs: [["Produzione", "Olivi"], ["Età", "Da 2 a 8/10 anni"], ["Selezione", "Più dimensioni"], ["Fornitura", "Per professionisti del verde"]],
-    imageNote: "Olea europaea. Fotografia botanica di Didier Descouens, CC BY-SA 4.0.",
   },
   mimose: {
     intro: "Mimose di più dimensioni.",
     description: "Le mimose sono una delle nostre produzioni principali. Le coltiviamo in più dimensioni, per rispondere alle diverse esigenze di fornitura. Chiedici le misure e le disponibilità del momento.",
     specs: [["Produzione", "Mimose"], ["Dimensioni", "Più dimensioni"], ["Misure disponibili", "Da concordare con il vivaio"], ["Fornitura", "Per professionisti del verde"]],
-    imageNote: "Acacia mimosa. Tavola botanica di Lydia Byam, 1797, da Wikimedia Commons.",
   },
   rose: {
     intro: "Grandi fiori, rampicanti e paesaggistiche.",
     description: "Coltiviamo rose a grandi fiori, rampicanti e paesaggistiche. Abbiamo le varietà dei più importanti ibridatori: chiedici quali sono disponibili per la tua fornitura.",
     specs: [["Produzione", "Rose"], ["Tipologie", "Grandi fiori, rampicanti, paesaggistiche"], ["Varietà", "Dei più importanti ibridatori"], ["Fornitura", "Per professionisti del verde"]],
-    imageNote: "Rosa Clare. Tavola da Edwards’s Botanical Register, pubblico dominio.",
   },
 } as const;
 
@@ -32,7 +28,6 @@ export function Catalog() {
   const [filter, setFilter] = useState("Tutte");
   const [active, setActive] = useState<Plant | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
-  const { setPlantId } = usePlant();
 
   useEffect(() => {
     if (!active) return;
@@ -48,7 +43,6 @@ export function Catalog() {
   function close() { dialog.current?.close(); }
   function request() {
     if (!active) return;
-    setPlantId(active.id);
     close();
     requestAnimationFrame(() => {
       document.querySelector("#contatti")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
@@ -73,10 +67,10 @@ export function Catalog() {
       const rect = event.currentTarget.getBoundingClientRect();
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) close();
     }}>
-      {active && <div className="plant-dialog-panel">
+      {active && <div className="plant-dialog-panel"><span className="sheet-handle" aria-hidden="true" />
         <button type="button" className="dialog-close" onClick={close} aria-label="Chiudi dettagli"><span aria-hidden="true">×</span></button>
-        <div className="dialog-art"><Image src={active.image} alt={active.imageAlt} width={800} height={1000} sizes="(max-width: 700px) 90vw, 40vw" /><p>{DETAILS[active.id].imageNote}</p></div>
-        <div className="dialog-content"><div className="dialog-brand">Vivai Papini Giocondo <span aria-hidden="true">↗</span></div><h2 id="plant-dialog-title">{active.title}</h2><p className="dialog-intro">{DETAILS[active.id].intro}</p><p className="dialog-description">{DETAILS[active.id].description}</p><dl className="dialog-specs">{DETAILS[active.id].specs.map(([label,value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl><div className="dialog-request"><p>Varietà, formati, quantità e disponibilità da concordare con il vivaio.</p><button type="button" onClick={request}>Parliamo di {active.title.toLowerCase()} <span aria-hidden="true">↗</span></button></div></div>
+        <div className="dialog-art"><Image src={active.image} alt={active.imageAlt} width={800} height={1000} sizes="(max-width: 700px) 90vw, 40vw" /></div>
+        <div className="dialog-content"><div className="dialog-brand">Vivai Papini Giocondo <span aria-hidden="true">↗</span></div><h2 id="plant-dialog-title">{active.title}</h2><p className="dialog-intro">{DETAILS[active.id].intro}</p><p className="dialog-description">{DETAILS[active.id].description}</p><dl className="dialog-specs">{DETAILS[active.id].specs.map(([label,value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl><div className="dialog-request"><p>Varietà, formati, quantità e disponibilità da concordare con il vivaio.</p><button type="button" onClick={request}>Parliamone <span aria-hidden="true">↗</span></button></div></div>
       </div>}
     </dialog>
   </section>;

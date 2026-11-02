@@ -14,3 +14,5 @@
 @media(max-width:600px){.new-brand .brand-logo{width:88px}.new-nav.open{top:120px}}
 
 .new-site .footer-phone{display:flex;gap:28px;flex-wrap:wrap}.new-site .footer-contact-line{font-size:clamp(24px,5.2vw,78px);overflow-wrap:anywhere}.contact-direct{font-style:normal;font-size:15px;line-height:1.6;display:grid;gap:12px}.contact-direct>div{display:flex;flex-wrap:wrap;gap:20px}.contact-direct a:hover{text-decoration:underline;text-underline-offset:4px}.new-site .footer-notes p:first-child{font-weight:650}
+
+.new-site .footer-meta{grid-template-columns:1fr auto}@media(max-width:700px){.new-site .footer-meta{grid-template-columns:1fr}}
