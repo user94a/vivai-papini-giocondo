@@ -6,7 +6,6 @@ import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
   CONTACT_PHONES,
-  COMPANY_NAME,
   COMPANY_PARTNERS,
   COMPANY_VAT,
 } from "@/lib/content";
@@ -18,7 +17,7 @@ export function Footer() {
         <div className="footer-identity">
           <BrandLogo size="lg" negative className="footer-logo" />
           <div className="footer-notes">
-            <p>{COMPANY_NAME}</p>
+            <p>s.s. agri. Papini Giocondo</p>
             <p>{COMPANY_PARTNERS}</p>
             <p>{CONTACT_ADDRESS}</p>
             <p>P.IVA {COMPANY_VAT}</p>
@@ -49,6 +48,7 @@ export function Footer() {
       </footer>
       <div className="footer-legal">
         <p>© {new Date().getFullYear()} Vivai Papini Giocondo. Tutti i diritti riservati.</p>
+        <p className="footer-credit">Credits: <a href="https://www.linkedin.com/in/dario-calamandrei-83976b138/" target="_blank" rel="noopener noreferrer">Dario Calamandrei</a></p>
         <div className="footer-policy-links" aria-label="Informazioni legali">
           <span>Privacy policy</span>
           <span>Cookie policy</span>

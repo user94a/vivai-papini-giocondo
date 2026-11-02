@@ -134,6 +134,9 @@
 .footer-identity{display:grid;justify-items:start;align-content:start;gap:36px;min-width:0}
 .footer-logo{display:block;width:160px;height:auto}
 .sober-footer .footer-notes{font-size:14px;line-height:1.6;gap:8px}
+.new-site .footer-notes p:first-child{font-weight:400}
+.sober-footer ::selection{background:#f3f4ed;color:#193b2b}
+.footer-credit a{text-decoration:underline;text-underline-offset:3px}
 .footer-actions{display:grid;grid-template-columns:minmax(100px,.65fr) minmax(0,1.35fr);gap:48px 32px;min-width:0;padding-top:12px}
 .footer-navigation{display:flex;flex-direction:column;align-items:flex-start;gap:24px;font-size:20px;grid-row:1/3}
 .footer-navigation a,.footer-direct-contacts a{display:inline-flex;align-items:center;gap:12px}
