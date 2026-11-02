@@ -9,21 +9,21 @@ import "./catalog.css";
 type Plant = (typeof PLANTS)[number];
 const DETAILS = {
   olivi: {
-    intro: "Il tempo, nella sua forma più concreta.",
-    description: "Dalle piante giovani agli esemplari più maturi, l’olivo è una delle produzioni centrali del vivaio. Partiamo dalle esigenze della tua fornitura per individuare la selezione adatta.",
-    specs: [["Produzione", "Olivi"], ["Età", "Da 2 a 10 anni"], ["Selezione", "Piante giovani ed esemplari"], ["Fornitura", "Per professionisti del verde"]],
+    intro: "Più dimensioni, da 2 a 8/10 anni.",
+    description: "Produciamo olivi di più dimensioni: dalle piante di 2 anni fino agli esemplari di 8/10 anni. Confrontiamoci sulle esigenze del tuo progetto per individuare le dimensioni e le quantità adatte.",
+    specs: [["Produzione", "Olivi"], ["Età", "Da 2 a 8/10 anni"], ["Selezione", "Più dimensioni"], ["Fornitura", "Per professionisti del verde"]],
     imageNote: "Olea europaea. Fotografia botanica di Didier Descouens, CC BY-SA 4.0.",
   },
   mimose: {
-    intro: "La primavera ha un carattere preciso.",
-    description: "Più misure e lotti omogenei, per chi pianifica il verde con attenzione. Confrontiamoci sulle caratteristiche della fornitura e sulle disponibilità del momento.",
-    specs: [["Produzione", "Mimose"], ["Selezione", "Lotti omogenei"], ["Misure", "Più misure, da concordare"], ["Fornitura", "Per professionisti del verde"]],
+    intro: "Mimose di più dimensioni.",
+    description: "Le mimose sono una delle nostre produzioni principali. Le coltiviamo in più dimensioni, per rispondere alle diverse esigenze di fornitura. Chiedici le misure e le disponibilità del momento.",
+    specs: [["Produzione", "Mimose"], ["Dimensioni", "Più dimensioni"], ["Misure disponibili", "Da concordare con il vivaio"], ["Fornitura", "Per professionisti del verde"]],
     imageNote: "Acacia mimosa. Tavola botanica di Lydia Byam, 1797, da Wikimedia Commons.",
   },
   rose: {
-    intro: "La bellezza, in tutte le sue forme.",
-    description: "Rose a grandi fiori, rampicanti e paesaggistiche, da selezioni di ibridatori. Una produzione da esplorare insieme, a partire dal carattere del tuo progetto.",
-    specs: [["Produzione", "Rose"], ["Tipologie", "Grandi fiori, rampicanti, paesaggistiche"], ["Selezione", "Da ibridatori"], ["Fornitura", "Per professionisti del verde"]],
+    intro: "Grandi fiori, rampicanti e paesaggistiche.",
+    description: "Coltiviamo rose a grandi fiori, rampicanti e paesaggistiche. Abbiamo le varietà dei più importanti ibridatori: chiedici quali sono disponibili per la tua fornitura.",
+    specs: [["Produzione", "Rose"], ["Tipologie", "Grandi fiori, rampicanti, paesaggistiche"], ["Varietà", "Dei più importanti ibridatori"], ["Fornitura", "Per professionisti del verde"]],
     imageNote: "Rosa Clare. Tavola da Edwards’s Botanical Register, pubblico dominio.",
   },
 } as const;
@@ -57,16 +57,17 @@ export function Catalog() {
   }
 
   return <section className="plants-section catalog" id="produzioni">
-    <div className="section-heading"><h2>Caratteri diversi.<br />La stessa cura.</h2><p>Tre protagoniste del nostro vivaio.<br />Ogni pianta, una storia da scoprire.</p></div>
+    <div className="section-heading"><h2>Le nostre<br />produzioni.</h2><p>Le produzioni principali sono olivi, mimose e rose. Più dimensioni e varietà per i tuoi progetti di verde.</p></div>
     <div className="plant-filters" aria-label="Filtra le produzioni">{["Tutte", ...PLANTS.map(p => p.title)].map(label => <button type="button" key={label} onClick={() => setFilter(label)} aria-pressed={filter === label} className={filter === label ? "active" : ""}>{label}<span aria-hidden="true">{filter === label ? "↗" : "+"}</span></button>)}</div>
     <div className="plant-cards">{PLANTS.filter(p => filter === "Tutte" || filter === p.title).map(p => <button type="button" key={p.id} className={`plant-card catalog-card plant-${p.id}`} onClick={() => setActive(p)} aria-haspopup="dialog" aria-label={`Scopri ${p.title}`}>
       <span className="plant-card-top"><span>{p.ages}</span><span className="catalog-discover">Esplora la selezione <span aria-hidden="true">↗</span></span></span>
       <span className="plant-picture"><Image src={p.image} alt={p.imageAlt} width={600} height={600} sizes="(max-width: 600px) 90vw, 30vw" /></span>
       <span className="plant-title"><span className="catalog-card-title">{p.title}</span><span className="catalog-plus" aria-hidden="true"><span /></span></span>
+      <span className="catalog-highlights">{p.highlights.map(item => <span key={item}>{item}</span>)}</span>
       <span className="catalog-description">{p.text}</span>
       <span className="catalog-card-foot">Scopri tutti i dettagli <span aria-hidden="true">↗</span></span>
     </button>)}</div>
-    <div className="other-plants"><p>E intorno, molto altro.</p><div><span>Glicine</span><span>Ortensie</span><span>Piante da siepe</span><a href="#contatti">Cerchi altro? Parliamone ↗</a></div></div>
+    <div className="catalog-other"><div><h3>Non solo olivi,<br />mimose e rose.</h3><p>Alle produzioni principali affianchiamo altre coltivazioni. Il nostro vivaio cresce anche con le esigenze dei tuoi progetti.</p></div><div className="catalog-other-list"><ul><li>Glicine</li><li>Ortensie</li><li>Piante da siepe</li><li>E altre coltivazioni</li></ul><a href="#contatti">Cerchi una pianta in particolare? Parliamone <span aria-hidden="true">↗</span></a></div></div>
     <dialog ref={dialog} className={`plant-dialog plant-${active?.id ?? "olivi"}`} aria-labelledby="plant-dialog-title" onClose={() => setActive(null)} onClick={event => {
       if (event.target !== event.currentTarget) return;
       const rect = event.currentTarget.getBoundingClientRect();
