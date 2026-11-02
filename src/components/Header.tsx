@@ -1,59 +1,33 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/BrandLogo";
+import { ArrowOut } from "@/components/ArrowOut";
 
 const LINKS = [
-  { href: "#produzioni", label: "Produzioni" },
-  { href: "#storia", label: "Storia" },
-  { href: "#approccio", label: "Approccio" },
+  { href: "/", label: "Home" },
+  { href: "/catalogo", label: "Catalogo" },
+  { href: "/about", label: "About" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
-
+  const pathname = usePathname();
   return (
-    <header className="site-header">
-      <div className="site-header-inner">
-        <a href="#top" className="brand-mark" aria-label="Vivai Papini Giocondo">
-          <BrandLogo size="sm" priority />
-        </a>
-
-        <nav className="site-nav desktop-nav" aria-label="Principale">
-          {LINKS.map((link) => (
-            <a key={link.href} href={link.href}>
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <a href="#contatti" className="btn-primary header-cta">
-          Scrivici
-        </a>
-
-        <button
-          type="button"
-          className="nav-toggle"
-          aria-label={open ? "Chiudi menu" : "Apri menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? "Chiudi" : "Menu"}
-        </button>
-      </div>
-
-      {open && (
-        <nav className="mobile-nav" aria-label="Mobile">
-          {LINKS.map((link) => (
-            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
-              {link.label}
-            </a>
-          ))}
-          <a href="#contatti" onClick={() => setOpen(false)}>
-            Scrivici
-          </a>
-        </nav>
-      )}
+    <header className="new-header">
+      <Link href="/" className="new-brand" aria-label="Vivai Papini Giocondo, homepage" onClick={() => setOpen(false)}>
+        <BrandLogo size="sm" priority />
+      </Link>
+      <nav id="main-navigation" aria-label="Principale" className={open ? "new-nav open" : "new-nav"}>
+        {LINKS.map(({ href, label }) => (
+          <Link key={href} href={href} aria-current={(href === "/" ? pathname === href : pathname.startsWith(href)) ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>
+        ))}
+        <Link className="mobile-contact" href="/contatti" onClick={() => setOpen(false)}>Contatti <ArrowOut /></Link>
+      </nav>
+      <Link className="round-link header-contact" href="/contatti">Contatti <span aria-hidden="true"><ArrowOut /></span></Link>
+      <button type="button" className="menu-button" onClick={() => setOpen(!open)} aria-controls="main-navigation" aria-expanded={open} aria-label={open ? "Chiudi menu" : "Apri menu"}>{open ? "Chiudi" : "Menu"}</button>
     </header>
   );
 }

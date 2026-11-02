@@ -126,3 +126,54 @@
 }
 
 .new-site .footer-meta,.new-site .footer-credits{font-size:13px}
+
+/* Approach cards reveal their reading surface on the reverse. */
+.gesture-card{position:relative;min-width:0;perspective:1400px;min-height:460px}
+.gesture-turn{display:grid;height:100%;transform-style:preserve-3d;transition:transform .62s cubic-bezier(.22,.8,.2,1)}
+.gesture-card.is-open .gesture-turn{transform:rotateY(180deg)}
+.gesture-front,.gesture-back{grid-area:1/1;position:relative;overflow:hidden;border-radius:var(--radius-surface);corner-shape:var(--shape-corner);backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:36px 36px 100px;min-width:0}
+.gesture-front{background:var(--ink);color:white;display:flex;align-items:flex-end}
+.gesture-front img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.5);transition:transform .7s}
+.gesture-front h3{position:relative}
+.gesture-trade .gesture-front{background:#e4e9dd;color:var(--ink);align-items:center}
+.gesture-back{transform:rotateY(180deg);background:var(--surface);color:var(--ink);display:flex;flex-direction:column;justify-content:center}
+.care-grid .gesture-back h3{font-size:clamp(24px,2.2vw,32px)}
+.care-grid .gesture-back p{font-size:17px;line-height:1.6;margin-top:24px;max-width:48ch}
+.gesture-toggle{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:var(--radius-surface);background:transparent;cursor:pointer;color:var(--ink);-webkit-tap-highlight-color:transparent}
+.gesture-toggle-icon{position:absolute;right:24px;bottom:24px;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--bg);font-size:30px;font-weight:400;line-height:1;transition:transform .4s,background .2s}
+.is-open .gesture-toggle-icon{transform:rotate(45deg);background:var(--ink);color:var(--bg)}
+.gesture-toggle:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
+@media(hover:hover){.gesture-card:not(.is-open):hover .gesture-front img{transform:scale(1.035)}.gesture-toggle:hover .gesture-toggle-icon{transform:scale(1.1)}.is-open .gesture-toggle:hover .gesture-toggle-icon{transform:rotate(45deg) scale(1.1)}}
+@media(max-width:1100px){.gesture-delivery{grid-column:1/-1}}
+@media(max-width:600px){.gesture-card{min-height:380px}.gesture-front,.gesture-back{padding:32px 32px 96px}.care-grid .gesture-back h3{font-size:28px}.care-grid .gesture-back p{font-size:16px}.gesture-delivery{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.gesture-turn,.gesture-card.is-open .gesture-turn{transform:none}.gesture-back{transform:none}.gesture-card:not(.is-open) .gesture-back,.gesture-card.is-open .gesture-front{visibility:hidden}}
+.is-open .gesture-toggle{inset:auto 24px 24px auto;width:44px;height:44px;border-radius:50%}
+.is-open .gesture-toggle-icon{right:0;bottom:0}
+
+/* The active card makes room before its reverse is revealed. */
+.gesture-grid{display:flex;align-items:stretch}
+.gesture-grid .gesture-card{flex-basis:0;flex-shrink:1;min-height:490px}
+.gesture-toggle-icon{font-size:0;line-height:0;padding:0}
+.gesture-toggle-icon svg{display:block;flex-shrink:0}
+@media(min-width:901px){
+  .gesture-grid .gesture-front,.gesture-grid .gesture-back{padding:32px 28px 96px}
+  .gesture-grid .gesture-front h3{font-size:clamp(24px,2.4vw,34px)}
+}
+@media(max-width:900px){
+  .gesture-grid{flex-direction:column}
+  .gesture-grid .gesture-card{flex-basis:auto;min-height:400px}
+  .gesture-grid .gesture-turn{min-height:400px;transition:transform .62s cubic-bezier(.22,.8,.2,1),min-height .65s cubic-bezier(.22,1.12,.36,1)}
+  .gesture-grid .is-roomy .gesture-turn{min-height:470px}
+}
+@media(prefers-reduced-motion:reduce){
+  .gesture-grid .gesture-turn{transition:none}
+}
+
+/* Shared navigation and dedicated information pages. */
+.new-nav .mobile-contact{display:none}
+.new-nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px}
+.dedicated-intro{padding:56px var(--site-gutter) 72px}
+.dedicated-intro h1{font-size:clamp(48px,7vw,100px);letter-spacing:-.05em;line-height:1.05;margin:0 0 24px}
+.dedicated-intro p{font-size:clamp(16px,2vw,22px);max-width:46ch}
+@media(min-width:601px){.new-header .header-contact{display:inline-flex}}
+@media(max-width:600px){.new-nav .mobile-contact{display:flex;align-items:center;gap:12px}.dedicated-intro{padding:36px var(--site-gutter) 48px}}

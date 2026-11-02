@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
@@ -32,11 +33,11 @@ export function Footer() {
 
       <div className="footer-meta">
         <p>
-          <a href="#produzioni">Produzioni</a>
+          <Link href="/">Home</Link>
           {" · "}
-          <a href="#storia">Storia</a>
+          <Link href="/catalogo">Catalogo</Link>
           {" · "}
-          <a href="#approccio">Approccio</a>
+          <Link href="/about">About</Link>
         </p>
         <p>Italia · 1920–oggi</p>
       </div>
