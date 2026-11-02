@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { CONTACT_EMAIL, CONTACT_ADDRESS, CONTACT_PHONES } from "@/lib/content";
 
-export function Contatti() {
+export function Contatti({ expanded = false }: { expanded?: boolean }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
@@ -30,14 +30,14 @@ export function Contatti() {
     <section className="contact-section" id="contatti">
       <form className="coupon" onSubmit={onSubmit}>
         <div className="coupon-left">
-          <h2>Parliamone</h2>
+          <h2>{expanded ? "Raccontaci cosa cerchi." : "Parliamone"}</h2>
           <p>
             Hai un progetto o cerchi una fornitura? Scrivici, ne parliamo insieme.
           </p>
-          <address className="contact-direct"><p>{CONTACT_ADDRESS}</p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><div>{CONTACT_PHONES.map(phone => <a key={phone} href={`tel:+39${phone.replace(/\s/g, "")}`}>{phone}</a>)}</div></address>
+          {!expanded && <address className="contact-direct"><p>{CONTACT_ADDRESS}</p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><div>{CONTACT_PHONES.map(phone => <a key={phone} href={`tel:+39${phone.replace(/\s/g, "")}`}>{phone}</a>)}</div></address>}
         </div>
         <div className="coupon-right">
-          <label className="sr-only" htmlFor="contact-name">
+          <label className={expanded ? "contact-field-label" : "sr-only"} htmlFor="contact-name">
             Nome
           </label>
           <input
@@ -49,7 +49,7 @@ export function Contatti() {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <label className="sr-only" htmlFor="contact-email">
+          <label className={expanded ? "contact-field-label" : "sr-only"} htmlFor="contact-email">
             Email
           </label>
           <input
@@ -61,7 +61,7 @@ export function Contatti() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label className="sr-only" htmlFor="contact-company">
+          <label className={expanded ? "contact-field-label" : "sr-only"} htmlFor="contact-company">
             Azienda
           </label>
           <input
@@ -72,17 +72,19 @@ export function Contatti() {
             value={company}
             onChange={(e) => setCompany(e.target.value)}
           />
-          <label className="sr-only" htmlFor="contact-message">
+          <label className={expanded ? "contact-field-label" : "sr-only"} htmlFor="contact-message">
             Messaggio
           </label>
-          <input
-            id="contact-message"
-            name="message"
-            type="text"
-            placeholder="Cosa ti serve"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
+          {expanded ? (
+            <textarea id="contact-message" name="message" rows={5}
+              placeholder="Raccontaci il tuo progetto o la fornitura che cerchi"
+              value={message} onChange={(e) => setMessage(e.target.value)} />
+          ) : (
+            <input id="contact-message" name="message" type="text"
+              placeholder="Cosa ti serve" value={message}
+              onChange={(e) => setMessage(e.target.value)} />
+          )}
+          {expanded && <p className="contact-form-note">Il pulsante apre il tuo programma di posta con il messaggio già compilato.</p>}
           <button type="submit" className="btn-primary coupon-submit">
             Apri email
           </button>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/BrandLogo";
-import { ArrowOut } from "@/components/ArrowOut";
+import { FlowerContact } from "@/components/FlowerContact";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -24,9 +24,9 @@ export function Header() {
         {LINKS.map(({ href, label }) => (
           <Link key={href} href={href} aria-current={(href === "/" ? pathname === href : pathname.startsWith(href)) ? "page" : undefined} onClick={() => setOpen(false)}>{label}</Link>
         ))}
-        <Link className="mobile-contact" href="/contatti" onClick={() => setOpen(false)}>Contatti <ArrowOut /></Link>
+        <Link className="mobile-contact" href="/contatti" onClick={() => setOpen(false)}>Contatti</Link>
       </nav>
-      <Link className="round-link header-contact" href="/contatti">Contatti <span aria-hidden="true"><ArrowOut /></span></Link>
+      <FlowerContact />
       <button type="button" className="menu-button" onClick={() => setOpen(!open)} aria-controls="main-navigation" aria-expanded={open} aria-label={open ? "Chiudi menu" : "Apri menu"}>{open ? "Chiudi" : "Menu"}</button>
     </header>
   );

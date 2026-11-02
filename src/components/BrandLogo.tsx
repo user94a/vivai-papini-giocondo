@@ -1,13 +1,13 @@
 import { sitePath } from "@/lib/site-path";
 import Image from "next/image";
 
-const LOGO_SRC = sitePath("/logo-vivai-papini-giocondo.png");
 const LOGO_ALT = "Vivai Papini Giocondo";
 
 type BrandLogoProps = {
   size?: "sm" | "md" | "lg";
   className?: string;
   priority?: boolean;
+  negative?: boolean;
 };
 
 const SIZES = {
@@ -20,17 +20,18 @@ export function BrandLogo({
   size = "md",
   className = "",
   priority = false,
+  negative = false,
 }: BrandLogoProps) {
   const { width, height } = SIZES[size];
 
   return (
     <Image
-      src={LOGO_SRC}
+      src={sitePath(`/logo-vivai-papini-giocondo${negative ? "-negativo" : ""}.svg`)}
       alt={LOGO_ALT}
       width={width}
       height={height}
       className={`brand-logo brand-logo-${size} ${className}`.trim()}
-      priority={priority}
+      preload={priority}
     />
   );
 }

@@ -22,7 +22,7 @@ export const COLOR_PRESETS: { id: string; label: string; colors: ColorTokens }[]
       surface: "#FFFFFF",
       ink: "#044023",
       inkMuted: "#5A6B62",
-      accent: "#24BC26",
+      accent: "#7E9278",
       accentAlt: "#C78C4D",
       line: "#E6E6E3",
     },

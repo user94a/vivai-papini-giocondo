@@ -1,0 +1,65 @@
+/* Shared heading roles. Specificity keeps route CSS and navigation order
+   from changing the site's typography. The home hero keeps its display scale. */
+.new-site {
+  --font-display: var(--font-archivo), "Archivo", sans-serif;
+  --heading-weight: 550;
+  --heading-page: clamp(48px, 7vw, 100px);
+  --heading-section: clamp(40px, 5vw, 76px);
+  --heading-card: clamp(28px, 3vw, 42px);
+}
+
+.new-site :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-display);
+  font-weight: var(--heading-weight);
+  text-transform: none;
+}
+
+.new-site :is(.about-editorial-title, .dedicated-intro, .catalog-intro) h1 {
+  font-size: var(--heading-page);
+  font-weight: 650;
+  letter-spacing: -.065em;
+  line-height: 1.05;
+}
+
+.new-site :is(.section-heading, .roots-copy, .location-copy, .coupon-left) h2 {
+  font-size: var(--heading-section);
+  font-weight: var(--heading-weight);
+  letter-spacing: -.065em;
+  line-height: 1.05;
+}
+
+.new-site .contact-card h2 {
+  font-size: var(--heading-card);
+  letter-spacing: -.04em;
+  line-height: 1.1;
+}
+
+.new-site .care-grid :is(.gesture-front, .gesture-back) h3 {
+  font-size: clamp(24px, 2.4vw, 34px);
+  letter-spacing: -.04em;
+  line-height: 1.1;
+}
+
+.new-site .new-hero h1 {
+  font-weight: 650;
+}
+
+.new-site .product-identity h1 {
+  font-weight: 650;
+  letter-spacing: -.065em;
+  line-height: 1.05;
+}
+
+/* h4 product names receive the same reset and typeface as h1-h3. */
+.new-site :is(h4, h5, h6) {
+  margin: 0;
+  text-wrap: balance;
+}
+
+@media (max-width: 600px) {
+  .new-site {
+    --heading-page: clamp(42px, 11vw, 64px);
+    --heading-section: clamp(36px, 10vw, 45px);
+    --heading-card: 30px;
+  }
+}
