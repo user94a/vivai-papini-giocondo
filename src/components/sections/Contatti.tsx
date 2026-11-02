@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { CONTACT_EMAIL } from "@/lib/content";
+import { CONTACT_EMAIL, CONTACT_ADDRESS, CONTACT_PHONES } from "@/lib/content";
 import { usePlant } from "@/components/PlantContext";
 
 export function Contatti() {
@@ -38,6 +38,7 @@ export function Contatti() {
             Vivai, garden center, paesaggisti: scrivici. Stai chiedendo di{" "}
             <strong>{plant.title}</strong>.
           </p>
+          <address className="contact-direct"><p>{CONTACT_ADDRESS}</p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a><div>{CONTACT_PHONES.map(phone => <a key={phone} href={`tel:+39${phone.replace(/\s/g, "")}`}>{phone}</a>)}</div></address>
         </div>
         <div className="coupon-right">
           <label className="sr-only" htmlFor="contact-name">

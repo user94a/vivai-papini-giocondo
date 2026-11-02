@@ -76,6 +76,11 @@ export const MOMENTS = [
   },
 ] as const;
 
-export const CONTACT_EMAIL = "email@placeholder.it";
-export const CONTACT_PHONE = "+39 000 000 0000";
-export const CONTACT_ADDRESS = "Indirizzo vivaio (da definire)";
+export const CONTACT_EMAIL = "vivaipapinigiocondo@gmail.com";
+export const CONTACT_PHONE = "333 2842010";
+export const CONTACT_ADDRESS = "Via Romana, 7 - 51017 Castellare di Pescia (PT)";
+
+export const CONTACT_PHONES = [CONTACT_PHONE, "349 8437257"] as const;
+export const COMPANY_NAME = "S.S. AGRI. PAPINI GIOCONDO";
+export const COMPANY_PARTNERS = "di Lucia e Paola Papini e C.";
+export const COMPANY_VAT = "01983330471";

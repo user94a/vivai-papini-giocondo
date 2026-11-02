@@ -1,7 +1,10 @@
 import {
   CONTACT_ADDRESS,
   CONTACT_EMAIL,
-  CONTACT_PHONE,
+  CONTACT_PHONES,
+  COMPANY_NAME,
+  COMPANY_PARTNERS,
+  COMPANY_VAT,
 } from "@/lib/content";
 
 export function Footer() {
@@ -9,9 +12,10 @@ export function Footer() {
     <footer className="site-footer" id="footer">
       <div className="footer-top">
         <div className="footer-notes">
-          <p>Vivai Papini Giocondo</p>
+          <p>{COMPANY_NAME}</p>
+          <p>{COMPANY_PARTNERS}</p>
           <p>{CONTACT_ADDRESS}</p>
-          <p>Visite in azienda su appuntamento</p>
+          <p>P.IVA {COMPANY_VAT}</p>
         </div>
         <a href="#top" className="footer-top-link">
           Torna su
@@ -19,11 +23,11 @@ export function Footer() {
       </div>
 
       <a className="footer-contact-line" href={`mailto:${CONTACT_EMAIL}`}>
-        {CONTACT_EMAIL.replace("@", "\n@")}
+        {CONTACT_EMAIL}
       </a>
 
       <p className="footer-phone">
-        <a href={`tel:${CONTACT_PHONE.replace(/\s/g, "")}`}>{CONTACT_PHONE}</a>
+        {CONTACT_PHONES.map(phone => <a key={phone} href={`tel:+39${phone.replace(/\s/g, "")}`}>{phone}</a>)}
       </p>
 
       <div className="footer-meta">
